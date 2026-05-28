@@ -23,26 +23,26 @@ const songs = [
     {
         title: "歌曲 1",
         artist: "歌手 A",
-        src: "music/mp3/music0.mp3",
-        cover: "music/img/bg0.png"
+        src: "music0.mp3",
+        cover: "bg0.png"
     },
     {
         title: "歌曲 2",
         artist: "歌手 B",
-        src: "music/mp3/music1.mp3",
-        cover: "music/img/bg1.png"
+        src: "music1.mp3",
+        cover: "bg1.png"
     },
     {
         title: "歌曲 3",
         artist: "歌手 C",
-        src: "music/mp3/music2.mp3",
-        cover: "music/img/bg2.png"
+        src: "music2.mp3",
+        cover: "bg2.png"
     },
     {
         title: "歌曲 4",
         artist: "歌手 D",
-        src: "music/mp3/music3.mp3",
-        cover: "music/img/bg3.png"
+        src: "music3.mp3",
+        cover: "bg3.png"
     }
 ];
 
@@ -65,7 +65,7 @@ function loadSong(song) {
 function playSong() {
     isPlaying = true;
     audio.play();
-    playIcon.src = "music/img/暂停.png"; // 切换为暂停图标
+    playIcon.src = "暂停.png"; // 切换为暂停图标
     coverWrapper.classList.add('playing');
 }
 
