@@ -1,0 +1,235 @@
+/* 全局重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #2c3e50, #4ca1af);
+}
+
+/* 播放器主容器 */
+.player-container {
+    width: 800px;
+    height: 350px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 左侧面板：唱片区域 */
+.left-panel {
+    width: 40%;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* 唱片背景（底座） */
+.disc-bg {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    opacity: 0.6;
+    position: absolute;
+}
+
+/* 封面容器 */
+.cover-wrapper {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #fff;
+    z-index: 2;
+    /* 默认不旋转 */
+    animation: rotateCover 10s linear infinite;
+    animation-play-state: paused;
+}
+
+/* 封面图片 */
+.cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 旋转动画 */
+@keyframes rotateCover {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* 播放状态下的旋转类 */
+.cover-wrapper.playing {
+    animation-play-state: running;
+}
+
+/* 右侧面板：控制区域 */
+.right-panel {
+    width: 60%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* 歌曲信息 */
+.song-info h2 {
+    color: #333;
+    margin-bottom: 5px;
+    font-size: 24px;
+}
+
+.song-info p {
+    color: #999;
+    font-size: 14px;
+}
+
+/* 进度条区域 */
+.progress-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: #666;
+}
+
+.progress-bar-bg {
+    flex-grow: 1;
+    height: 6px;
+    background-color: #e0e0e0;
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+}
+
+.progress-bar-fill {
+    width: 0%;
+    height: 100%;
+    background-color: #c20c0c; /* 网易红 */
+    border-radius: 3px;
+    position: relative;
+}
+
+/* 进度条上的小圆点 */
+.progress-btn {
+    width: 12px;
+    height: 12px;
+    background-color: #c20c0c;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+    display: none; /* 默认隐藏，鼠标悬停显示 */
+}
+
+.progress-bar-bg:hover .progress-btn {
+    display: block;
+}
+
+/* 控制按钮组 */
+.controls {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.controls button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.controls button img {
+    width: 32px;
+    height: 32px;
+    transition: transform 0.2s;
+}
+
+.controls button:hover img {
+    transform: scale(1.1);
+}
+
+/* 播放/暂停按钮稍微大一点 */
+.play-pause-btn img {
+    width: 45px !important;
+    height: 45px !important;
+}
+
+/* 播放列表弹窗样式 */
+.playlist-modal {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-left: 1px solid #ddd;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+}
+
+.playlist-modal.active {
+    transform: translateX(0);
+}
+
+.modal-header {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    font-size: 16px;
+    color: #333;
+}
+
+#closeListBtn {
+    cursor: pointer;
+    font-weight: bold;
+    color: #999;
+}
+
+.song-list {
+    list-style: none;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.song-list li {
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+}
+
+.song-list li:hover {
+    background-color: #f5f5f5;
+}
+
+.song-list li.active {
+    color: #c20c0c;
+    background-color: #f9f9f9;
+}
